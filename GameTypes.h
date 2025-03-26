@@ -1,11 +1,14 @@
-struct Ray
-{
+#pragma once
+#include <string>
+#include <vector>
+#include "Vector3.h" // Assuming you have a Vector3 definition somewhere
+
+struct Ray {
     Vector3 origin;
     Vector3 direction;
 };
 
-enum BodyPart
-{
+enum BodyPart {
     LOWERLEG_LEFT,
     LOWERLEG_RIGHT,
     UPPERLEG_LEFT,
@@ -19,14 +22,12 @@ enum BodyPart
     HEAD
 };
 
-struct PlayerAdapter
-{
+struct PlayerAdapter {
     int pad_0[3];
     void* Player; // 0x10
 };
 
-enum WeaponCategory
-{
+enum WeaponCategory {
     Pistol,
     AssaultRifle,
     SubmachineGun,
@@ -37,8 +38,7 @@ enum WeaponCategory
     Utility
 };
 
-struct HitData
-{
+struct HitData {
     bool hitCharacter;
     bool traced;
     Vector3 hitWorldPos;
@@ -50,14 +50,12 @@ struct HitData
     int hitMaterialDef;
 };
 
-struct Character
-{
+struct Character {
     void* character;
     int id;
 };
 
-enum ChatMessageType
-{
+enum ChatMessageType {
     PUBLIC_CHAT,
     TEAM_CHAT,
     RADIO,
@@ -69,8 +67,7 @@ enum ChatMessageType
     CLAN
 };
 
-struct Enemy
-{
+struct Enemy {
     void* Character = nullptr;
     void* Player = nullptr;
     std::string Name = "";
@@ -78,11 +75,9 @@ struct Enemy
     int team = -1;
     bool local = false;
 };
-std::vector<Enemy> EnemyList;
+extern std::vector<Enemy> EnemyList;
 
-struct TransformData
-{
-    // Pads may be wrong :(
+struct TransformData {
     Vector3 pos;
     int pad_0[2];
     Vector3 velocity;
@@ -90,25 +85,23 @@ struct TransformData
     Vector2 rotation;
 };
 
-
-struct ESPCfg
-{
+struct ESPCfg {
     bool snapline = 0;
-    ImVec4 snaplineColor = ImColor(255,255,255);
+    ImVec4 snaplineColor = ImColor(255, 255, 255);
     bool bone = 0;
-    ImVec4 boneColor = ImColor(255,255,255);
+    ImVec4 boneColor = ImColor(255, 255, 255);
     bool box = 0;
-    ImVec4 boxColor = ImColor(255,255,255);
+    ImVec4 boxColor = ImColor(255, 255, 255);
     bool healthesp = 0;
     bool healthNumber = 0;
     bool name = 0;
     bool distance;
-    ImVec4 nameColor = ImColor(255,255,255);
+    ImVec4 nameColor = ImColor(255, 255, 255);
     bool weapon = 0;
-    ImVec4 weaponColor = ImColor(255,255,255);
+    ImVec4 weaponColor = ImColor(255, 255, 255);
 };
-struct BurstData
-{
+
+struct BurstData {
     Ray currentRay;
     void* weaponEgid;
     int damagePercent;
@@ -116,8 +109,7 @@ struct BurstData
     float maxRange;
 };
 
-struct AimbotCfg
-{
+struct AimbotCfg {
     bool aimbot = 0;
     bool visCheck = 0;
     BodyPart aimBone = STOMACH;
@@ -130,15 +122,13 @@ struct AimbotCfg
     bool triggerbot = 0;
 };
 
-struct CustomWeapon
-{
+struct CustomWeapon {
     void* EGID = 0;
     int liveId = -1;
     int weaponDefId = -1;
 };
 
-struct Color
-{
+struct Color {
     float r;
     float g;
     float b;
